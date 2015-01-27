@@ -8,7 +8,7 @@ This is a very bare minimum check and only does a TCP connect on a given port to
 Install
 =======
 
-.. code-block: bash
+.. code-block:: bash
 
     $> cp hosts.py.example hosts.py
     $> python setup.py install
