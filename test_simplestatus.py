@@ -1,13 +1,13 @@
 import socket
 from io import StringIO
 
-from unittest2 import TestCase
+import unittest2 as unittest
 import mock
 
 import simplestatus
 
 @mock.patch.object(simplestatus, 'socket')
-class TestCheckHost(TestCase):
+class TestCheckHost(unittest.TestCase):
     def setUp(self):
         self.sock = mock.MagicMock()
 
@@ -75,7 +75,7 @@ class TestCheckHost(TestCase):
 
 @mock.patch.object(simplestatus, 'sys')
 @mock.patch.object(simplestatus, 'socket')
-class TestCheckAll(TestCase):
+class TestCheckAll(unittest.TestCase):
     def setUp(self):
         self.sock = mock.MagicMock()
         self.sout = StringIO()

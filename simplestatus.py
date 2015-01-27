@@ -39,7 +39,7 @@ def check_all(hostsports):
             sys.stdout.write(u" - DOWN\n\t{0} on port {1} seems down: {2}\n".format(host,port,msg))
 
 def main():
-    import hosts import hostlist
+    from hosts import hostlist
     check_all(hostlist)
 
 if __name__ == '__main__':

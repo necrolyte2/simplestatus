@@ -2,6 +2,13 @@
 simplestatus
 ============
 
+
+.. image:: https://travis-ci.org/necrolyte2/simplestatus.svg
+     :target: https://travis-ci.org/necrolyte2/simplestatus
+
+.. image:: https://coveralls.io/repos/necrolyte2/simplestatus/badge.svg
+     :target: https://coveralls.io/r/necrolyte2/simplestatus
+
 Do very simple check on hosts to make sure they are up
 This is a very bare minimum check and only does a TCP connect on a given port to see if it succeeds
 
