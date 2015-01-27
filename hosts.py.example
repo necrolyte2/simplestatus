@@ -1,0 +1,5 @@
+# List of host and port to connect to
+# host, port, human description
+hosts = [
+    ('www.google.com', 80, 'Sanity check with Google HTTP'),
+]
