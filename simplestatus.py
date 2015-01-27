@@ -13,14 +13,8 @@ def check_host(host, port):
     try:
         s.connect((host,port))
         return (True,'')
-    except socket.error as e:
-        return (False, str(e))
-    except (
-        socket.herror, socket.gaierror, socket.timeout
-    ) as e:
-        return (False, str(e))
     except Exception as e:
-        return (False, 'Unknown error: {0}'.format(e))
+        return (False, str(e))
     finally:
         s.close()
 

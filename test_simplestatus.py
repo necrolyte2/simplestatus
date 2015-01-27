@@ -1,7 +1,11 @@
 import socket
 from io import StringIO
 
-import unittest2 as unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
+
 import mock
 
 import simplestatus
@@ -17,7 +21,7 @@ class TestCheckHost(unittest.TestCase):
 
         r = simplestatus.check_host('foo.bar', 80)
         self.assertFalse(r[0])
-        self.assertEqual('Unknown error: foo', r[1])
+        self.assertEqual('foo', r[1])
 
     def test_raises_error(self, msocket):
         msocket.socket.return_value = self.sock
