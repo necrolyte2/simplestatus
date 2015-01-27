@@ -18,10 +18,11 @@ Usage
 
 .. code-block:: bash
 
-    $> simplestatus hosts.py 
+    $> python simplestatus.py
 
 TODO
 ====
 
+* Change the project so it actually allows you to specify a hosts.py
 * Allow UDP|DGRAM
 * Allow port ranges
