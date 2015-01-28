@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name = 'simplestatus',
-    version = '1.0.0-dev',
+    version = '0.0.1',
     py_modules = ['status'],
     setup_requires = [
         'nose',

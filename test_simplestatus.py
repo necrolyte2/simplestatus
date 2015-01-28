@@ -105,3 +105,19 @@ class TestCheckAll(unittest.TestCase):
         self.assertEqual('Foo Bar Bar - DOWN', sout[1])
         self.assertEqual('\tfoo.bar.bar on port 80 seems down: error', sout[2])
         self.assertEqual('Bar Foo - UP', sout[3])
+
+class TestLoadHosts(unittest.TestCase):
+    def setUp(self):
+        self.hostfile = StringIO()
+
+    def test_loads_hosts(self):
+        hosts = [('www.example.com',80,'description')]
+        self.hostfile.write(
+            u"hosts = " + str(hosts)
+        )
+        self.hostfile.seek(0)
+        r = simplestatus.load_hosts(self.hostfile)
+        self.assertEqual(hosts, r)
+
+    def test_loads_hosts(self):
+        self.assertRaises(simplestatus.MissingHostsError, simplestatus.load_hosts, self.hostfile)

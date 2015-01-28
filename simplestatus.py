@@ -32,9 +32,30 @@ def check_all(hostsports):
         else:
             sys.stdout.write(u" - DOWN\n\t{0} on port {1} seems down: {2}\n".format(host,port,msg))
 
+class MissingHostsError(Exception): pass
+
+def load_hosts(hostfile):
+    '''
+    Just load the python hosts file
+    Must contain a variable called hosts which points to a list
+    of tuples of 3 elements each
+
+    hosts = [
+        ('www.example.com', 80, 'Web check for www.example.com'),
+    ]
+
+    :param file hostfile: opened hosts.py file
+    '''
+    contents = hostfile.read()
+    exec(contents)
+    try:
+        return hosts
+    except NameError:
+        raise MissingHostsError('hostfile is missing host variable')
+
 def main():
-    from hosts import hostlist
-    check_all(hostlist)
+    from hosts import hosts
+    check_all(hosts)
 
 if __name__ == '__main__':
     main()
