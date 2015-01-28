@@ -6,6 +6,11 @@ try:
 except ImportError:
     import unittest
 
+try:
+    import __builtin__ as builtins
+except ImportError:
+    import builtins
+
 import mock
 
 import simplestatus
@@ -121,3 +126,23 @@ class TestLoadHosts(unittest.TestCase):
 
     def test_loads_hosts(self):
         self.assertRaises(simplestatus.MissingHostsError, simplestatus.load_hosts, self.hostfile)
+
+class TestMain(unittest.TestCase):
+    def setUp(self):
+        self.args = mock.Mock()
+
+    def test_requires_host_file_argument(self):
+        self.assertRaises(SystemExit, simplestatus.main)
+
+    def test_loads_host_file(self):
+        with mock.patch.object(simplestatus, 'argparse') as margparse:
+            parser = mock.Mock()
+            margparse.ArgumentParser.return_value = parser
+            parser.parse_args.return_value = mock.Mock(hostsfile='/foo/bar.py')
+            with mock.patch.object(builtins, 'open') as mopen:
+                contents = "hosts = [('www.example.com',80,'webcheck')]"
+                mopen.return_value.__enter__.return_value.read.return_value = contents
+                mopen.return_value.read.return_value = contents
+                with mock.patch.object(simplestatus, 'check_all') as mcheck_all:
+                    simplestatus.main()
+                mopen.assert_called_once_with('/foo/bar.py')

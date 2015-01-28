@@ -1,5 +1,6 @@
 import socket
 import sys
+import argparse
 
 def check_host(host, port):
     '''
@@ -47,14 +48,20 @@ def load_hosts(hostfile):
     :param file hostfile: opened hosts.py file
     '''
     contents = hostfile.read()
-    exec(contents)
-    try:
-        return hosts
-    except NameError:
-        raise MissingHostsError('hostfile is missing host variable')
+    l = {}
+    g = {}
+    exec(contents, l, g)
+    if 'hosts' not in g:
+        raise MissingHostsError('hostfile is missing hosts variable')
+    return g['hosts']
 
 def main():
-    from hosts import hosts
+    parser = argparse.ArgumentParser()
+    parser.add_argument('hostsfile', help='Path to host.py file to load')
+    args = parser.parse_args()
+    hosts = None
+    with open(args.hostsfile) as fh:
+        hosts = load_hosts(fh)
     check_all(hosts)
 
 if __name__ == '__main__':

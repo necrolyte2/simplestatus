@@ -1,6 +1,12 @@
 from setuptools import setup, find_packages
 import setuptools
 
+install_requires = []
+try:
+    import argparse
+except ImportError:
+    install_requires.append(argparse)
+
 setup(
     name = 'simplestatus',
     version = '0.0.1',
@@ -13,6 +19,7 @@ setup(
         'nose',
         'mock',
     ],
+    install_requires = install_requires,
     entry_points = {
         'console_scripts': [
             'simplestatus = simplestatus:main'

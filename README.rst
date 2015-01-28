@@ -25,11 +25,20 @@ Usage
 
 .. code-block:: bash
 
-    $> python simplestatus.py
+    $> simplestatus hosts.py
+
+Hosts.py
+========
+
+Because I'm lazy, this is just a python file that has a variable in it instead of an actual yaml file or cfg file
+All you need to do is add all your hosts to the hosts list
+
+Each host needs to be a 3 item tuple as follows::
+
+    ('hostname or ip', tcpport, 'Description of check')
 
 TODO
 ====
 
-* Change the project so it actually allows you to specify a hosts.py
 * Allow UDP|DGRAM
 * Allow port ranges
