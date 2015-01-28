@@ -2,4 +2,5 @@
 # host, port, human description
 hosts = [
     ('www.google.com', 80, 'Sanity check with Google HTTP'),
+    ('www.google.com', 99, 'This port is down'),
 ]

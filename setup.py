@@ -10,7 +10,7 @@ except ImportError:
 setup(
     name = 'simplestatus',
     version = '0.0.1',
-    py_modules = ['status'],
+    py_modules = ['simplestatus'],
     setup_requires = [
         'nose',
         'python-coveralls',

@@ -27,6 +27,19 @@ Usage
 
     $> simplestatus hosts.py
 
+Example
+=======
+
+Here we will just use the hosts.py.example that comes with this package to show what the output looks like
+with hosts that are up and hosts that are down
+
+.. code-block:: bash
+
+    $> simplestatus hosts.py.example 
+    Sanity check with Google HTTP - UP
+    This port is down - DOWN
+        www.google.com on port 99 seems down: [Errno 111] Connection refused
+
 Hosts.py
 ========
 
