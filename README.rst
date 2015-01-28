@@ -9,8 +9,9 @@ simplestatus
 .. image:: https://coveralls.io/repos/necrolyte2/simplestatus/badge.svg
      :target: https://coveralls.io/r/necrolyte2/simplestatus
 
-Do very simple check on hosts to make sure they are up
-This is a very bare minimum check and only does a TCP connect on a given port to see if it succeeds
+Do very simple check on hosts to make sure they are up by simply issuing a TCP connect to the given host and port.
+
+Not really a replacement for say Nagios, but for quick and dirty, it works well
 
 Install
 =======
