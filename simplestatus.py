@@ -63,6 +63,3 @@ def main():
     with open(args.hostsfile) as fh:
         hosts = load_hosts(fh)
     check_all(hosts)
-
-if __name__ == '__main__':
-    main()
