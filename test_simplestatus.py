@@ -103,7 +103,8 @@ class TestCheckAll(unittest.TestCase):
         ]
 
         self.sock.connect.side_effect = [None, socket.error('error'), None]
-        simplestatus.check_all(hosts)
+        r = simplestatus.check_all(hosts)
+        self.assertEqual(r, False)
 
         sout = msys.stdout.getvalue().splitlines()
         self.assertEqual('Foo Bar - UP', sout[0])
@@ -144,5 +145,9 @@ class TestMain(unittest.TestCase):
                 mopen.return_value.__enter__.return_value.read.return_value = contents
                 mopen.return_value.read.return_value = contents
                 with mock.patch.object(simplestatus, 'check_all') as mcheck_all:
-                    simplestatus.main()
+                    mcheck_all.return_value = True
+                    try:
+                        simplestatus.main()
+                    except SystemExit as e:
+                        self.assertEqual(e.code, 0)
                 mopen.assert_called_once_with('/foo/bar.py')

@@ -25,6 +25,7 @@ def check_all(hostsports):
 
     :param list hostsports: List of (hostaddr, port, description)
     '''
+    success = True
     for host, port, desc in hostsports:
         up, msg = check_host(host, port)
         sys.stdout.write(u'{0}'.format(desc))
@@ -32,6 +33,8 @@ def check_all(hostsports):
             sys.stdout.write(u' - UP\n')
         else:
             sys.stdout.write(u" - DOWN\n\t{0} on port {1} seems down: {2}\n".format(host,port,msg))
+            success = False
+    return success
 
 class MissingHostsError(Exception): pass
 
@@ -62,4 +65,8 @@ def main():
     hosts = None
     with open(args.hostsfile) as fh:
         hosts = load_hosts(fh)
-    check_all(hosts)
+    r = check_all(hosts)
+    if r:
+        sys.exit(0)
+    else:
+        sys.exit(1)
